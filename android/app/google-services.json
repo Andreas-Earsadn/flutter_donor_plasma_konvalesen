@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "231846534008",
+    "project_id": "donor-plasma-convalescen-2b304",
+    "storage_bucket": "donor-plasma-convalescen-2b304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231846534008:android:065e9ba1a0c9c997f3468d",
+        "android_client_info": {
+          "package_name": "io.Andreas.DonorPlasma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231846534008-c7ut78g46h8tb9a2pqj04o2lotnjbfqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqSRvnunu1OjWQLQdzicxXsUAGpvVTb9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231846534008-c7ut78g46h8tb9a2pqj04o2lotnjbfqk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

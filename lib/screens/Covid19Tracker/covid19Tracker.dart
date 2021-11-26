@@ -1,0 +1,550 @@
+
+import 'package:donateplasma/constants/color_constants.dart';
+import 'package:donateplasma/screens/Covid19Tracker/chartsData.dart';
+import 'package:donateplasma/screens/Covid19Tracker/counter.dart';
+import 'package:donateplasma/screens/Covid19Tracker/countryData.dart';
+import 'package:donateplasma/screens/Covid19Tracker/parser.dart';
+import 'package:donateplasma/screens/Covid19Tracker/selectCountry.dart';
+import 'package:donateplasma/screens/Covid19Tracker/settingsDialog.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+
+import 'dart:math';
+import 'chartsUtils.dart';
+import 'dateRangeDialog.dart';
+
+// void main() => runApp(CovidTracker());
+
+class CovidTracker extends StatelessWidget {
+  CovidTracker({Key key}) : super(key: key);
+  static const routeName = '/CovidTrackerScreen';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Pantau Perkembangan Covid-19',
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      home: CtHomePage(),
+    );
+  }
+}
+
+class CtHomePage extends StatefulWidget {
+  CtHomePage({Key key}) : super(key: key);
+
+
+  @override
+  _Ct19PageState createState() => _Ct19PageState();
+}
+
+class _Ct19PageState extends State<CtHomePage> with TickerProviderStateMixin {
+  final GlobalKey _refreshIndicatorKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  Map<String, CountryData> countryData = {"Global": new CountryData()};
+  Map<String, ChartsData> chartsData = {};
+  String country = "Global";
+  bool justStarted = true;
+
+  int springAnimationDuration = 750;
+  AnimationController _controller;
+
+  ThemeData datePickerTheme = ThemeData.dark().copyWith(
+      brightness: Brightness.dark,
+      accentColor: kPrimaryColor,
+      // textTheme: Colors.white,
+      dialogBackgroundColor: Colors.white,
+      colorScheme: ColorScheme.light(primary: kPrimaryColor, surface: Colors.white)
+
+
+  );
+  DateTimeRange selectedDateRange;
+  Settings settings = new Settings();
+
+  @override
+  initState() {
+    _controller = new AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+
+    chartsData["Global"] = new ChartsData();
+    settings.load();
+
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _triggerLiquidPullRefresh();
+    });
+  }
+
+  void _triggerLiquidPullRefresh() {
+    (_refreshIndicatorKey.currentState as dynamic)?.show();
+  }
+
+  Future<void> refreshData() async {
+    String localCountry = country.toString();
+    var url = 'https://www.worldometers.info/coronavirus/';
+    var response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      countryData = Parser.getCountryData(response.body);
+
+      setState(() {
+        _controller.forward(from: 0.0);
+      });
+
+      if (chartsData[localCountry] != null) {
+        if (localCountry != "Global") {
+          url += countryData[localCountry].link;
+          response = await http.get(Uri.parse(url));
+          if (response.statusCode != 200) return;
+        }
+
+        var data = Parser.getChartsData(response.body, settings.defaultDailyView);
+        setState(() { chartsData[localCountry] = data;  });
+        checkRangeSetting();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Color(0xffffffff),
+      appBar: AppBar(
+        title: Text(country, textAlign: TextAlign.center),
+        leading: Theme(
+          data: datePickerTheme,
+          child: Builder(
+            builder: (context) => IconButton(
+                icon: Icon(Icons.calendar_today),
+                color: Colors.white,
+                onPressed: () {
+                  showDateDialog(context);
+                }),
+          ),
+        ),
+        actions: <Widget>[
+          Theme(
+            data: datePickerTheme,
+            child: Builder(
+              builder: (context) => IconButton(
+                  icon: Icon(Icons.settings),
+                  color: Colors.white,
+                  onPressed: () {
+                    showSettingsDialog(context);
+                  }),
+            ),
+          ),
+        ],
+      ),
+      body: LiquidPullToRefresh(
+        springAnimationDurationInMilliseconds: springAnimationDuration,
+        key: _refreshIndicatorKey,
+        showChildOpacityTransition: false,
+        onRefresh: refreshData,
+        child: ListView(
+          padding: new EdgeInsets.symmetric(horizontal: 20),
+          shrinkWrap: true,
+          children: <Widget>[
+            SizedBox(height: 20),
+            if (countryData[country].totalTests > 0) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Total Tes:',
+                    style: TextStyle(color: Colors.blue[200], fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  Counter(
+                    textStyle: TextStyle(color: Colors.blue[200], fontSize: 22, fontWeight: FontWeight.bold),
+                    animation: new StepTween(
+                      begin: 0, //prevTotalCases,
+                      end: countryData[country].totalTests,
+                    ).animate(_controller),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Tests per Mln:',
+                    style: TextStyle(color: Colors.blue[200], fontSize: 18),
+                  ),
+                  Counter(
+                    textStyle: TextStyle(color: Colors.blue[200], fontSize: 18),
+                    animation: new StepTween(
+                      begin: 0, //prevTotalCases,
+                      end: countryData[country].testsPerMln,
+                    ).animate(_controller),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30)
+            ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Total Kasus:',
+                  style: TextStyle(color: Colors.deepPurple, fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.deepPurple, fontSize: 22, fontWeight: FontWeight.bold),
+                  animation: new StepTween(
+                    begin: min(countryData[country].totalCases, 0), //prevTotalCases,
+                    end: countryData[country].totalCases,
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Cases per Mln:',
+                  style: TextStyle(color: Colors.deepPurple, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.deepPurple, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].casesPerMln.toInt(), 0), //prevTotalCases,
+                    end: countryData[country].casesPerMln.toInt(),
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Kasus Baru:',
+                  style: TextStyle(color: Colors.deepPurple, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.deepPurple, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].newCases, 0), //prevTotalCases,
+                    end: countryData[country].newCases,
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            chartsData[country] != null ? createGraph(chartsData[country].total) : SizedBox(),
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Kasus Aktif:',
+                  style: TextStyle(color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold),
+                  animation: new StepTween(
+                    begin: min(countryData[country].activeCases, 0), //prevRecoveredCases,
+                    end: countryData[country].activeCases,
+                  ).animate(_controller),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Telah Sembuh:',
+                  style: TextStyle(color: Colors.green, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.green, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].totalRecovered, 0), //prevTotalCases,
+                    end: countryData[country].totalRecovered,
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            chartsData[country] != null ? createGraph(chartsData[country].recovered) : SizedBox(),
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Total Kematian:',
+                  style: TextStyle(color: Colors.red, fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.red, fontSize: 22, fontWeight: FontWeight.bold),
+                  animation: new StepTween(
+                    begin: min(countryData[country].totalDeaths, 0), //prevDeathCases,
+                    end: countryData[country].totalDeaths,
+                  ).animate(_controller),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Deaths per Mln:',
+                  style: TextStyle(color: Colors.red, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.red, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].deathsPerMln.toInt(), 0), //prevTotalCases,
+                    end: countryData[country].deathsPerMln.toInt(),
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Kasus Kritis:',
+                  style: TextStyle(color: Colors.red, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.red, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].criticalCases, 0), //prevTotalCases,
+                    end: countryData[country].criticalCases,
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Kematian Terbaru:',
+                  style: TextStyle(color: Colors.red, fontSize: 18),
+                ),
+                Counter(
+                  textStyle: TextStyle(color: Colors.red, fontSize: 18),
+                  animation: new StepTween(
+                    begin: min(countryData[country].newDeaths, 0), //prevTotalCases,
+                    end: countryData[country].newDeaths,
+                  ).animate(_controller),
+                ),
+              ],
+            ),
+            chartsData[country] != null ? createGraph(chartsData[country].deaths) : SizedBox(),
+            SizedBox(height: 30),
+            chartsData[country] == null && countryData[country].link != null
+                ? FlatButton(
+
+                    child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(color: kPrimaryColor, borderRadius: BorderRadius.circular(25)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Lihat Grafik", style: TextStyle(color: Color(
+                                0xffffffff), fontSize: 18)),
+                          ],
+                        )),
+                    onPressed: () {
+                      setState(() {
+                        chartsData[country] = new ChartsData(daily: settings.defaultDailyView);
+                      });
+                      _triggerLiquidPullRefresh();
+                    },
+                  )
+                : SizedBox(height: 30.0,),
+          ],
+        ),
+      ),
+      floatingActionButton: AnimatedOpacity(
+        opacity: countryData.length > 1 ? 1.0 : 0.0,
+        duration: Duration(milliseconds: 500),
+        child: FloatingActionButton(
+          onPressed: () {
+            navigateToSelection(context);
+          },
+          tooltip: 'Pilih Negara',
+          child: Icon(Icons.public),
+        ),
+      ),
+    );
+  }
+
+  navigateToSelection(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SelectionScreen(
+                countries: countryData.keys.toList(),
+                selectedCountry: country,
+              )),
+    );
+
+    if (result != null) {
+      setState(() {
+        country = result;
+        checkRangeSetting();
+
+        if (!settings.alwaysLoadCharts)
+          _controller.forward(from: 0.0);
+        else if (chartsData[country] == null) {
+          chartsData[country] = new ChartsData(daily: settings.defaultDailyView);
+          _triggerLiquidPullRefresh();
+        }
+      });
+    }
+  }
+
+  Future<void> showDateDialog(context) async {
+    if (chartsData[country] != null && chartsData[country].total.available) {
+      DateTimeRange range = getChartRange(chartsData[country]);
+      selectedDateRange = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new DateRangeDialog(range, selectedDateRange ?? range);
+        }) ?? selectedDateRange;
+      setState(() {});
+    } else {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Row(
+          children: [Icon(Icons.info_outline), SizedBox(width: 15), Text("Charts data is not yet available!")],
+        ),
+        elevation: 6.0,
+        behavior: SnackBarBehavior.floating,
+      ));
+    }
+  }
+
+  Future<void> showSettingsDialog(context) async {
+    if (settings.loaded) {
+      int prevRange = settings.rangeSetting;
+      settings = await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return new SettingsDialog(settings);
+              }) ?? settings;
+
+      setState(() {
+        if(prevRange != settings.rangeSetting)
+          checkRangeSetting();
+      });
+    } else {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Row(
+          children: [Icon(Icons.info_outline), SizedBox(width: 15), Text("Settings are still loading!")],
+        ),
+        elevation: 6.0,
+        behavior: SnackBarBehavior.floating,
+      ));
+    }
+  }
+
+  void checkRangeSetting() {
+    if (chartsData[country] != null && chartsData[country].total.available) {
+      DateTimeRange range = getChartRange(chartsData[country]);
+      if(selectedDateRange != null) {
+        if (selectedDateRange.end.compareTo(range.end) > 0)
+          selectedDateRange = new DateTimeRange(start: selectedDateRange.start, end: range.end);
+
+        if (selectedDateRange.start.compareTo(range.start) < 0)
+          selectedDateRange = new DateTimeRange(start: range.start, end: selectedDateRange.end);
+      }
+
+      if(justStarted) {
+        justStarted = false;
+        switch (settings.rangeSetting) {
+          case 0:
+            selectedDateRange = DateTimeRange(
+                start: range.end.subtract(Duration(days: 7)),
+                end: range.end
+            );
+            break;
+          case 1:
+            selectedDateRange = DateTimeRange(
+                start: range.end.subtract(Duration(days: 28)),
+                end: range.end
+            );
+            break;
+          case 2:
+            selectedDateRange = null;
+            break;
+        }
+      }
+    }
+  }
+
+  Widget createGraph(ChartData chartData) {
+    if (selectedDateRange != null && selectedDateRange.start.compareTo(selectedDateRange.end) >= 0)
+      chartData = new ChartData.empty(chartData.gradientColors, daily: settings.defaultDailyView);
+    var lineChartData = chartData.daily ? dailyData(chartData, selectedDateRange) : totalData(chartData, selectedDateRange);
+
+    return Stack(
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: 1.70,
+          child: Container(
+            child: Padding(
+                padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
+                child: new LineChart(lineChartData,
+                    swapAnimationDuration: Duration(seconds: chartData.available ? 1 : 0))),
+          ),
+        ),
+        Positioned.fill(
+          child: Visibility(
+            visible: !chartData.available,
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(40, 0, 0, 16),
+                child: Text(
+                  "Data Not Available",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 4, 32),
+              child: FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onPressed: () {
+                  setState(() {
+                    chartData.daily = !chartData.daily;
+                  });
+                },
+                child: Wrap(
+                  children: <Widget>[
+                    Icon(Icons.autorenew, color: Colors.deepPurple, size: 12),
+                    Text(
+                      chartData.daily ? ' Daily' : ' Total',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
