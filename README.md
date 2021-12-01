@@ -11,7 +11,7 @@
 
 # Hello :wave:
 
-Welcome to **Donate Plasma** project. As we all know, we are facing a global pandemic named as COVID-19. Scientists are trying to discover vaccines to cure people affected with corona virus. In this critical situation different types of treatments are given by different doctors. Some doctors recommended plasma therapy for the patient who is in the critical situation. In this situation it is difficult for a patient to find a donor as everybody can’t donate plasma.
+Welcome to **Donor Plasma Konvalesen** project. As we all know, we are facing a global pandemic named as COVID-19. Scientists are trying to discover vaccines to cure people affected with corona virus. In this critical situation different types of treatments are given by different doctors. Some doctors recommended plasma therapy for the patient who is in the critical situation. In this situation it is difficult for a patient to find a donor as everybody can’t donate plasma.
 
 ## What is plasma? Why plasma is needed to cure corona virus patients?
 
@@ -65,12 +65,8 @@ If you find any problem, bug (:beetle:) or want to share any kind of suggestions
 
 <table>
   <tr>
-   <td align="center"><a href="http://facebook.com/shunjid"><img src="https://avatars2.githubusercontent.com/u/29749035?v=4" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
-    <td align="center"><a href="http://facebook.com/zubayerhimel"><img src="https://avatars0.githubusercontent.com/u/29758443?v=4" width="100px;" alt=""/><br /><sub><b>Zubayer Himel</b></sub></a><br /><a href="#" title="Planning & Feedback">🤔</a><a href="#" title="Wireframing">🦴</a><a href="#" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://www.facebook.com/hm.sheble"><img src="https://avatars1.githubusercontent.com/u/62396798?v=4" width="100px;" alt=""/><br /><sub><b>Abu-Sufian Shibli</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.facebook.com/shahfahad.hossain"><img src="https://avatars1.githubusercontent.com/u/29758456?v=4" width="100px;" alt=""/><br /><sub><b>Shah Fahad Hossain</b></sub></a><br /><a href="#" title="Script writer for video">📝</a></td>
-    <td align="center"><a href="https://www.facebook.com/nadianasrin80"><img src="https://avatars1.githubusercontent.com/u/36202028?v=4" width="100px;" alt=""/><br /><sub><b>Nadia Nasrin</b></sub></a><br /><a href="#" title="Voice for video">🎙️</a></td>
-
+   <td align="center"><a href="http://facebook.com/anecdotalizard"><img src="https://avatars2.githubusercontent.com/u/29749035?v=4" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
+   
   </tr>
   </table>
 
