@@ -59,19 +59,17 @@ Here are some screenshots of our project
 
 ## Found a problem
 
-If you find any problem, bug (:beetle:) or want to share any kind of suggestions to improve our work please let us know by creating an [issue here.](https://github.com/TeamTigers/donate_plasma/issues)
+If you find any problem, bug (:beetle:) or want to share any kind of suggestions to improve our work please let us know by creating an [issue here.](https://github.com/Andreas-Earsadn/flutter_donor_plasma_konvalesen/issues)
 
 ## Contributors
 
 <table>
   <tr>
-   <td align="center"><a href="https://facebook.com/anecdotalizard"><img src="https://avatars2.githubusercontent.com/u/29749035?v=4" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
+   <td align="center"><a href="https://facebook.com/anecdotalizard"><img src="" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
    
   </tr>
   </table>
 
-## License
 
-This project is under MIT License and is made with :heart: by TeamTigers
 
 ## If you like our work please give us a :star:, it will motivate us to do more awesome work :blush:
