@@ -3,10 +3,10 @@
 
 ![Banner](screenshots/banner.png)
 
-[![Actions Status](https://github.com/teamtigers/donate_plasma/workflows/flutter-driver/badge.svg)](https://github.com/TeamTigers/donate_plasma/runs/816041523?check_suite_focus=true)
+<!-- [![Actions Status](https://github.com/teamtigers/donate_plasma/workflows/flutter-driver/badge.svg)](https://github.com/TeamTigers/donate_plasma/runs/816041523?check_suite_focus=true)
 [![GitHub](https://img.shields.io/github/license/teamtigers/donate_plasma)](https://img.shields.io/github/license/teamtigers/donate_plasma?label=License)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/teamtigers/donate_plasma/)
-
+ -->
 </div>
 
 # Hello :wave:
@@ -55,7 +55,7 @@ Here are some screenshots of our project
 
 **Application gif**
 
-<img src="screenshots/donate_plasma_teamtigers.gif" height="600" width="auto">
+<img src="" height="600" width="auto">
 
 ## Found a problem
 
@@ -65,7 +65,7 @@ If you find any problem, bug (:beetle:) or want to share any kind of suggestions
 
 <table>
   <tr>
-   <td align="center"><a href="https://facebook.com/anecdotalizard"><img src="" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
+   <td align="center"><a href="https://facebook.com/anecdotalizard"><img src="" width="100px;" alt=""/><br /><sub><b>Andreas-Earsadn</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
    
   </tr>
   </table>
