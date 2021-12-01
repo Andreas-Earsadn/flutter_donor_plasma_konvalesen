@@ -65,7 +65,7 @@ If you find any problem, bug (:beetle:) or want to share any kind of suggestions
 
 <table>
   <tr>
-   <td align="center"><a href="http://facebook.com/anecdotalizard"><img src="https://avatars2.githubusercontent.com/u/29749035?v=4" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
+   <td align="center"><a href="https://facebook.com/anecdotalizard"><img src="https://avatars2.githubusercontent.com/u/29749035?v=4" width="100px;" alt=""/><br /><sub><b>Shunjid Rahman Showrov</b></sub></a><br /><a href="#" title="Ideas">🤩</a><a href="#" title="Code">💻</a></td>
    
   </tr>
   </table>
