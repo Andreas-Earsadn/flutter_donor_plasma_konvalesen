@@ -1,7 +1,7 @@
 
 <div align="center">
 
-![Banner](screenshots/banner.png)
+![Banner](screenshots/BannerScreen.png)
 
 <!-- [![Actions Status](https://github.com/teamtigers/donate_plasma/workflows/flutter-driver/badge.svg)](https://github.com/TeamTigers/donate_plasma/runs/816041523?check_suite_focus=true)
 [![GitHub](https://img.shields.io/github/license/teamtigers/donate_plasma)](https://img.shields.io/github/license/teamtigers/donate_plasma?label=License)
@@ -47,11 +47,11 @@ Here are some screenshots of our project
 
 |                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
-| ![Banner](screenshots/donate_plasma_ss_1.png) | ![Home Page](screenshots/donate_plasma_ss_2.png) | ![Story](screenshots/donate_plasma_ss_3.png) |
+| ![Banner](screenshots/BannerScreen.png) | ![Home Page](screenshots/posJoinUs.png) | ![Story](screenshots/DonorStory.png) |
 
-|                  APP DRAWER                   |                 DONOR PROFILE                  |                 SHARE STORY                  |
+|                  ADMIN PAGE                   |                 DONOR PROFILE                  |                 SHARE STORY                  |
 | :-------------------------------------------: | :--------------------------------------------: | :------------------------------------------: |
-| ![Drawer](screenshots/donate_plasma_ss_4.png) | ![Profile](screenshots/donate_plasma_ss_5.png) | ![Share](screenshots/donate_plasma_ss_6.png) |
+| ![Drawer](screenshots/loginadmin.png) | ![Profile](screenshots/donorprofile1.png) | ![Share](screenshots/storycollection.png) |
 
 **Application gif**
 
