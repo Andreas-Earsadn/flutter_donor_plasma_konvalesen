@@ -45,9 +45,9 @@ Thanks to Almighty Allah, we got ourselves **Runner up** position. Yes you read 
 
 **Screenshots**
 
-|                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
+|                    BANNER                     |                    HOME PAGE                     |                 DONOR LIST                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
-| ![Banner](screenshots/Screenshot_20211202-075029.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
+| ![Banner](screenshots/Screenshot_20211202-075029.png)        | ![Home Page](screenshots/postJoinUs.png)|  ![Story](screenshots/Screenshot_20211123-225908.png)       |
 
 |                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
