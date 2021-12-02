@@ -47,7 +47,7 @@ Here are some screenshots of our project
 
 |                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
-| ![Banner](screenshots/BannerScreen.png)       | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png) |
+| ![Banner](screenshots/BannerScreen.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png) |
 
 |                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
@@ -55,7 +55,7 @@ Here are some screenshots of our project
 
 **Application gif**
 
-<img src="" height="300" width="auto">
+<img src="" height="300" width="200">
 
 ## Found a problem
 
