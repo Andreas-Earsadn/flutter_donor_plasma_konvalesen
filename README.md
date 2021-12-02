@@ -56,14 +56,14 @@ Thanks to Almighty Allah, we got ourselves **Runner up** position. Yes you read 
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
 | ![Banner](Screenshot_20211202-075029.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
 
-|                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
+|                  WELCOME ADMIN                   |                 LOGIN ADMIN                   |                 CRUD ADMIN                |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
-| ![Drawer](screenshots/logiinadmin.png)         | ![Profile](screenshots/donorprofile1.png)       | ![Share](screenshots/storycollection.png)    |
-|                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
+| ![Drawer](screenshots/welcomeadmin.png)         | ![Profile](screenshots/logiinadmin.png)       | ![Share](screenshots/posUpload.png)    |
+|                    DONOR STORY                   |        STORIES CCOLLECTION                    |                 CREATE STORY                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
 | ![Banner](Screenshot_20211202-075029.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
 
-|                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
+|                  DONOR FORM 1                   |                 DONOR FORM 2                    |                 FAQ                  |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
 | ![Drawer](screenshots/logiinadmin.png)         | ![Profile](screenshots/donorprofile1.png)       | ![Share](screenshots/storycollection.png)    |
 
