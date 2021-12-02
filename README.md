@@ -41,13 +41,13 @@ Thanks to Almighty Allah, we got ourselves **Runner up** position. Yes you read 
 
 ## Screenshots & Gif
 
-Here are some screenshots of our project
+
 
 **Screenshots**
 
 |                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
-| ![Banner](screenshots/BannerScreen.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
+| ![Banner](screenshots/welcomeadmin.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
 
 |                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
