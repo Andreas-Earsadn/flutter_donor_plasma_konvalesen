@@ -1,7 +1,7 @@
 
 <div align="center">
 
-![Banner](screenshots/BannerScreen.png)
+![Banner](screenshots/ic_launcher.png)
 
 <!-- [![Actions Status](https://github.com/teamtigers/donate_plasma/workflows/flutter-driver/badge.svg)](https://github.com/TeamTigers/donate_plasma/runs/816041523?check_suite_focus=true)
 [![GitHub](https://img.shields.io/github/license/teamtigers/donate_plasma)](https://img.shields.io/github/license/teamtigers/donate_plasma?label=License)
@@ -47,7 +47,7 @@ Here are some screenshots of our project
 
 |                    BANNER                     |                    HOME PAGE                     |                 DONOR STORY                  |
 | :-------------------------------------------: | :----------------------------------------------: | :------------------------------------------: |
-| ![Banner](screenshots/BannerScreen.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png) |
+| ![Banner](screenshots/BannerScreen.png)        | ![Home Page](screenshots/postJoinUs.png)         |  ![Story](screenshots/DonorStory.png)       |
 
 |                  ADMIN PAGE                   |                 DONOR PROFILE                    |                 SHARE STORY                  |
 | :-------------------------------------------: | :--------------------------------------------:   | :------------------------------------------: |
