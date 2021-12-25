@@ -11,23 +11,16 @@
 
 # Hello :wave:
 
-Welcome to **Donor Plasma Konvalesen** project. As we all know, we are facing a global pandemic named as COVID-19. Scientists are trying to discover vaccines to cure people affected with corona virus. In this critical situation different types of treatments are given by different doctors. Some doctors recommended plasma therapy for the patient who is in the critical situation. In this situation it is difficult for a patient to find a donor as everybody can’t donate plasma.
+Welcome to **Donor Plasma Konvalesen** project. Convalescent refers to anyone recovering from a disease. Convalescent plasma from patients who have already recovered from coronavirus disease 2019 (COVID-19) may contain antibodies against COVID-19. Giving this convalescent plasma to hospitalized people currently fighting COVID-19 may help them recover
 
-## What is plasma? Why plasma is needed to cure corona virus patients?
-
-**Plasma** is the clear, straw-colored liquid portion of blood that remains after red blood cells, white blood cells, platelets and other cellular components are removed. In **Convalescent Plasma Therapy (CPT)**, plasma collected from recovered patients is infused into patients who currently have the disease.
-
-CPT is, by far, the oldest treatment being tested to battle COVID-19, being successful in cases during the previous corona virus outbreaks such as the Sars epidemic in 2003 and the Ebola virus outbreak in 2013. Physicians used CPT effectively before the specific treatment was developed for H1N1 influenza (Spanish virus), SARS-1 and MERS virus.
+## Plasma
+In the blood plasma, there are antibodies that appear in response to the body when infected with a virus or bacteria, including the Corona virus. Enough antibodies can eradicate the virus that causes COVID-19. CPT is, by far, the oldest treatment being tested to battle COVID-19, being successful in cases during the previous corona virus outbreaks such as the Sars epidemic in 2003 and the Ebola virus outbreak in 2013. Physicians used CPT effectively before the specific treatment was developed for H1N1 influenza (Spanish virus), SARS-1 and MERS virus.
 
 ## Our project goal
 
-The main goal of our project is to make it easier for the COVID-19 patients to get a plasma donor easily and as soon as possible as it is too much difficult to find a plasma donor. In most of the case, it has seen that COVID-19 patients look for plasma in facebook group or just by posting randomly which in some case is not helpful. Here our project will help the patient to find a donor fast when they need.
+The main goal of Donor Plasma Konvalesen app is to make donor The main goal of this project is to make it easier for COVID-19 patients and donors to meet for plasma transfusions. Applications become a liaison between donors and patients.
 
-## Work flow of the project
 
-The person who wants to donate his/her plasma need to register and create his/her profile first in our application providing required information which are name, blood group, phone number and location. He/She can also share his/her winning story against corona virus to motivate others.
-
-Patients who need plasma don't need to create account. They can look for a donor from the home page. Patients can directly call the donor from the application by clicking on the dial button. Patients can also read the corresponding donor's story.
 
 ## Technology/ Stack used
 
@@ -35,11 +28,8 @@ Patients who need plasma don't need to create account. They can look for a donor
 - **Architecture**: Provider Pattern
 - **CI/CD**: Github Actions
 
-## Achievement :tada: :raised_hands:
 
-Thanks to Almighty Allah, we got ourselves **Runner up** position. Yes you read it right!. We submitted this project in the Flutter International Hackathon #Hack20 where 650 teams all over the world participated and submitted 266 projects. After 2 rounds of voting phase, our project has been selected as one of the top three. All thanks to Allah and our dedicated team members who really worked hard and got this achievement. [Winning moment video](screenshots/video/Winning%20moment%20Video.mp4)
-
-## Screenshots & Gif
+## Screenshots
 
 
 
